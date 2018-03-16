@@ -1,3 +1,5 @@
+from Observer import *
+
 class Observable(object):
 
         def __init__(self):
