@@ -7,3 +7,4 @@ class Observer(object):
         @abstractmethod
         def update(self):
                 pass
+                
