@@ -1,5 +1,5 @@
 from random import *
-from Weapon import *
+from Weapons.Weapon import *
 
 class NerdBomb(Weapon):
 
@@ -7,11 +7,10 @@ class NerdBomb(Weapon):
     They can be used a single time. '''
 
     def __init__(self):
-        Weapon.__init__(self)
-        setModif(self, uniform(3.5, 5))
-        setUses(self, 1)
-        setName(self, "NerdBomb")
+        super.__init__(self)
+        super.setModif(self, genModif(self))
+        super.setUses(self, 1)
+        super.setName(self, "NerdBomb")
 
     def genModif(self):
-        setModif(self, uniform(3.5, 5))
-        return getModif(self)
+        return uniform(3.5, 5)

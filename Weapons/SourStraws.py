@@ -1,4 +1,5 @@
-from Weapon import *
+from random import *
+from Weapons.Weapon import *
 
 class SourStraws(Weapon):
 
@@ -6,11 +7,11 @@ class SourStraws(Weapon):
     They can be used twice. '''
 
     def __init__(self):
-        Weapon.__init__(self)
-        self.modif = uniform(1, 1.75)
-        self.uses = 2
-        self.name = "SourStraws"
+        super.__init__(self)
+        super.setModif(self, genModif(self))
+        super.setUses(self, 2)
+        super.setName(self, "SourStraws")
 
     def genModif(self):
-        self.modif = uniform(1, 1.75)
-        return self.modif
+        return uniform(1, 1.75)
+
