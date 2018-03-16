@@ -25,7 +25,7 @@ class Player(Object):
                                 weaponList.append(Weapons.ChocolateBars())
                 return weaponList
 
-        #Create Player class setters
+        #Initialize Player 
 	def decreaseHealth(self, h):
 		self.health = self.health - h
 
