@@ -1,5 +1,5 @@
 from random import *
-from Weapon import *
+from Weapons.Weapon import *
 
 class HersheyKisses(Weapon):
 
@@ -7,11 +7,10 @@ class HersheyKisses(Weapon):
     They can be used a million times. '''
 
     def __init__(self):
-        Weapon.__init__(self)
-        setModif(self, 1)
-        setUses(self, 1000000)
-        setName(self, "HersheyKisses")
+        super.__init__(self)
+        super.setModif(self, genModif(self))
+        super.setUses(self, 1000000)
+        super.setName(self, "HersheyKisses")
 
     def genModif(self):
-        setModif(self, 1)
-        return getModif(self)
+        return 1

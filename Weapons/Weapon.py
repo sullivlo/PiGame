@@ -2,11 +2,11 @@ from random import *
 
 class Weapon(object):
 
-    ''' base weapons class. '''
+    ''' Base Weapons class. '''
 
     def __init__(self):
         self.modif = 0
-        self.uses = 0 # million
+        self.uses = 0
         self.name = 'HersheyKisses'
 
     def getUses(self):
@@ -17,6 +17,9 @@ class Weapon(object):
 
     def getModif(self):
         return self.modif
+
+    def setName(self, name):
+        self.name = name
 
     def setUses(self, uses):
         self.uses = uses

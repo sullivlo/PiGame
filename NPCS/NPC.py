@@ -34,6 +34,8 @@ class NPC(Observable):
 		self.health = h
 	def setAttack(self, a):
 		self.attack = a
+	def setUnaffCandy(self, c):
+		self.unaffCandy = c
 	def setName(self, n):
 		self.name = n
 	def setAlive(self, a):
