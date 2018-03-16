@@ -14,3 +14,4 @@ class SourStraws(Weapon):
 
     def genModif(self):
         return uniform(1, 1.75)
+

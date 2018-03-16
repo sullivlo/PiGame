@@ -7,21 +7,25 @@ class Player(Object):
 		self.health = genHealth(self)
 		self.attack = genAttack(self)
 		self.weapons = popWeapons(self)
-
+        
+        #Populate the weapon List that the play holds
+        #Changed control flow beucase tempList created readablibity issues
 	def popWeapons(self):
 		HersheyKisses = Weapons.HersheyKisses()
 		weaponList = [HersheyKisses]
 		tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars']
 		for size in range(0,9):
 			randWeapon = randint(0,2)
-			if tempList[randWeapon] == 'SourStraws':
-				weaponList.append(Weapons.SourStraws())
-			if tempList[randWeapon] == 'NerdBomb':
-				weaponList.append(Weapons.NerdBomb())
-			if tempList[randWeapon] == 'ChocolateBars':
-				weaponList.append(Weapons.ChocolateBars())
-		return weaponList
+	
+                        if(randWeapon == 0): 
+                                weaponList.append(Weapons.SourStraws())
+                        else if(randWeapon == 1):
+                                weaponList.append(Weapons.NerdBomb())
+                        else if(randWeapon == 2):
+                                weaponList.append(Weapons.ChocolateBars())
+                return weaponList
 
+        #Initialize Player 
 	def decreaseHealth(self, h):
 		self.health = self.health - h
 
@@ -33,7 +37,7 @@ class Player(Object):
 
 	def genHealth(self):
 		self.health = randint(100, 125)
-	#Getters
+	#Create Player class getters
 	def getHealth(self):
 		return self.health
 
@@ -43,7 +47,7 @@ class Player(Object):
 	def getInventory(self):
 		return self.weapons
 
-	#Setters
+	#Create Player class setters
 	def setHealth(self, h):
 		self.health = h
 
