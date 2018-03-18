@@ -10,7 +10,7 @@ class persons(NPC):
 
 	def __init__(self):
 		super.__init__(self)
-		super.setName(self, 'Zombies')
+		super.setName(self, 'Persons')
 		super.setHealth(self, genHealth(self))
 		super.setUnaffCandy(self, genUnaffCandy(self))
 		
