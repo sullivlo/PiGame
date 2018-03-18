@@ -15,9 +15,14 @@ class NPC(Observable):
 		pass
 	def genAttack(self):
 		pass
+
+	# generate unaffective candy
 	def genUnaffCandy(self):
 		pass
-
+	
+	# generate very affective candy, called alt 
+	def genAltCandy(self):
+		pass
 	#Getters
 	def getHealth(self):
 		return self.health
@@ -29,6 +34,9 @@ class NPC(Observable):
 		return self.name
 	def getAlive(self):
 		return self.alive
+	def getAltCabdy(self):
+		return self.altCandy
+	
 	#Setters
 	def setHealth(self, h):
 		self.health = h
@@ -40,3 +48,6 @@ class NPC(Observable):
 		self.name = n
 	def setAlive(self, a):
 		self.alive = a
+
+	def setAltCandy(self, x):
+		self.altCandy = x

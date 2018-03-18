@@ -11,10 +11,13 @@ class Zombies(NPC):
 		super.setName(self, 'Zombies')
 		super.setHealth(self, genHealth(self))
 		super.setUnaffCandy(self, genUnaffCandy(self))
-		
+		super.setAltCandy(self, getAltCandy(self))	
+	
 	def genHealth(self):
 		return randint(50, 100)
 	def genAttack(self):
 		return randint(0, 10)
 	def genUnaffCandy(self):
-		return ['SourStraws']
+		return ['']
+	def genAltCandy(self):
+		return['SourStraws'] #2x
