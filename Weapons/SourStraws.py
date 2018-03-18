@@ -13,5 +13,4 @@ class SourStraws(Weapon):
         super.setName(self, "SourStraws")
 
     def genModif(self):
-        return uniform(1, 1.75)
-
+        return random.uniform(1, 1.75)

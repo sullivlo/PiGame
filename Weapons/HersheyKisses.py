@@ -14,3 +14,4 @@ class HersheyKisses(Weapon):
 
     def genModif(self):
         return 1
+
