@@ -8,7 +8,7 @@ class Ghouls(NPC):
 
         def __init__(self):
                 super.__init__(self)
-                super.setName(self, 'Goul')
+                super.setName(self, 'Ghouls')
                 super.setHealth(self, genHealth(self))
                 super.setUnaffCandy(self, genUnaffCandy(self))
 		super.setAltCandy(self, genAltCandy(self))
