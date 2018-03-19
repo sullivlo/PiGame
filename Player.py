@@ -1,6 +1,7 @@
 from random import *
 from Weapons import *
 
+
 class Player(Object):
 	''' Base Player class. '''
 	def __init__(self):
@@ -13,7 +14,6 @@ class Player(Object):
 	def popWeapons(self):
 		HersheyKisses = Weapons.HersheyKisses()
 		weaponList = [HersheyKisses]
-		tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars']
 		for size in range(0,9):
 			randWeapon = randint(0,2)
 	
@@ -33,10 +33,10 @@ class Player(Object):
 		self.health = self.health + h
 
 	def genAttack(self):
-		self.attack = randint(10, 20)
+		self.attack = random.randint(10, 20)
 
 	def genHealth(self):
-		self.health = randint(100, 125)
+		self.health = random.randint(100, 125)
 	#Create Player class getters
 	def getHealth(self):
 		return self.health
