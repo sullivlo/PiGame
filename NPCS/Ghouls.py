@@ -11,15 +11,15 @@ class Ghouls(NPC):
                 super.setName(self, 'Ghouls')
                 super.setHealth(self, genHealth(self))
                 super.setUnaffCandy(self, genUnaffCandy(self))
-		super.setAltCandy(self, genAltCandy(self))
+				super.setAltCandy(self, genAltCandy(self))
 		
         def genHealth(self):
                 return random.uniform(40, 80)
         def genAttack(self):
                 return random.uniform(15, 30)
         def genUnaffCandy(self):
-                return ['']
-	def genAltCandy(self):
-		return ['NerdBombs'] #5x        
+                return 
+		def genAltCandy(self):
+			return ['NerdBombs'] #5x        
 	
                        

@@ -17,6 +17,6 @@ class persons(NPC):
 	def genHealth(self):
 		return 100
 	def genAttack(self):
-		return 
+		return -10 #Add health to the player
 	def genUnaffCandy(self):
 		return ['HersheyKisses','SourStraws','ChocolateBars','NerdBombs']

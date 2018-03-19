@@ -8,6 +8,7 @@ class NPC(Observable):
 		self.health = 0
 		self.attack = 0
 		self.unaffCandy = []
+		self.altCandy = []
 		self.name = ''
 		self.alive = True
 
