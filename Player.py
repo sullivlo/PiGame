@@ -17,11 +17,11 @@ class Player(Object):
 		for size in range(0,9):
 			randWeapon = randint(0,2)
 	
-                        if(randWeapon == 0): 
+                        if randWeapon == 0: 
                                 weaponList.append(Weapons.SourStraws())
-                        else if(randWeapon == 1):
+                        elif randWeapon == 1:
                                 weaponList.append(Weapons.NerdBomb())
-                        else if(randWeapon == 2):
+                        elif randWeapon == 2:
                                 weaponList.append(Weapons.ChocolateBars())
                 return weaponList
 
