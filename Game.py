@@ -1,3 +1,4 @@
+import math
 from random import *
 import Neighborhood
 import Player
@@ -15,7 +16,23 @@ class Game(object):
         				  #	once anyone attacks you switch to what is itsnt now
         self.gameover = False
 
-    isValidMove(self, nextPos):
+    def move(self):
+    	nextPos = input("\nWhat direction would you like to go in?"
+    		+"\nN for North\nS for South\nE for East\nW for West").upper()
+    	if isValidMove(nextPost):
+    		if (nextPos == 'N'):
+    			self.player.setPosY(self.player.getPosY()-1)
+    		elif (nextPos == 'W'):
+    			self.player.setPosX(self.player.getPosX()-1)
+    		elif (nextPos == 'S'):
+    			self.player.setPosY(self.player.getPosY()+1)
+    		elif (nextPos == 'E'):	
+    			self.player.setPosX(self.player.getPosX()+1)
+    	else:
+    		print("Not a valid move.")
+
+
+    def isValidMove(self, nextPos):
     	validMove = true
     	if (nextPos == 'N') and (self.player.getPosY() == 0):
     		validMove = false
