@@ -60,6 +60,13 @@ class Home(Observable, Observer):
     	super.add_Observer(person)
     	self.monsters.insert(position, person)
 
-    
+    def deleteMonster(self, position):
+    	del self.monsters[position]
+    	self.newPerson(self, position)
+    	self.update()
+
+    def update(self):
+    	super.notify()
+
 
 
