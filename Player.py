@@ -8,6 +8,8 @@ class Player(Object):
 		self.health = genHealth(self)
 		self.attack = genAttack(self)
 		self.weapons = popWeapons(self)
+		self.posX = 0
+		self.posY = 0
         
         #Populate the weapon List that the play holds
         #Changed control flow beucase tempList created readablibity issues
@@ -47,9 +49,21 @@ class Player(Object):
 	def getInventory(self):
 		return self.weapons
 
+	def getPosX(self):
+		return self.posX
+
+	def getPosY(self):
+		return self.posY
+
 	#Create Player class setters
 	def setHealth(self, h):
 		self.health = h
 
 	def setAttack(self, a):
 		self.attack = a
+
+	def setPosX(self, x):
+		self.posX = x
+
+	def setPosY(self, y):
+		self.posY = y
