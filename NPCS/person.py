@@ -2,7 +2,7 @@
 from random import *
 from NPC import *
 
-class persons(NPC):
+class person(NPC):
 	'''Persons are monsters/NPCs who have a health between of 100.
 	They are not harmed by the plater. Persons help you by giving 
 	you candy. Each piece of candy increases your health by 1 point.
@@ -10,7 +10,7 @@ class persons(NPC):
 
 	def __init__(self):
 		super.__init__(self)
-		super.setName(self, 'Persons')
+		super.setName(self, 'Person')
 		super.setHealth(self, genHealth(self))
 		super.setUnaffCandy(self, genUnaffCandy(self))
 		
