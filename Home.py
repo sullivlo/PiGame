@@ -25,23 +25,23 @@ class Home(Observable, Observer):
     		selected = possibleMon[randSelected]
     		if select == 'Person':
     			person = NPC.person() 
-    			super.add_Observer(self, person)
+    			super.add_Observer(person)
     			monsterList.append(person)
     		if select == 'Vampire':
     			vampire = NPC.Vampires() 
-    			super.add_Observer(self, vampire)
+    			super.add_Observer(vampire)
     			monsterList.append(vampire)
     		if select == 'Werewolves':
     			werewolves = NPC.Werewolves() 
-    			super.add_Observer(self, werewolves)
+    			super.add_Observer(werewolves)
     			monsterList.append(werewolves)
     		if select == 'Zombie':
     			zombie = NPC.Zombies() 
-    			super.add_Observer(self, zombie)
+    			super.add_Observer(zombie)
     			monsterList.append(zombie)
     		if select == 'Ghouls':
     			ghouls = NPC.Ghouls() 
-    			super.add_Observer(self, ghouls)
+    			super.add_Observer(ghouls)
     			monsterList.append(ghouls)
     	return monsterList
 

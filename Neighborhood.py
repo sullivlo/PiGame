@@ -8,41 +8,49 @@ class Neighborhood(Observable):
 	keeps track of the total monsters in the entire neighborhood.
 	The neighborhhod itself is a grid of houses.'''
 
-	def __init__(self):
+	def __init__(self, size):
 		Observable.__init__(self)
-		self.monstersInHouse = 0
-		self.peopleInHouse = 0
-		self.houses = []
+		self.monstersInHouses = 0
+		self.gridLength = size
+		self.gridSize = size*size
+		self.houses = genHouses(self, self.gridLength)
 	
-	#generaters 	
-	def genMonstersInHouse():
-		pass
-
-	def genPeopleInHouse():
-		pass
-
-	def genHouses():
-		pass
+	#generater
+	def genHouses(self, size):
+		neighborhood = []
+		for x in range(0, size):
+			streetHomes = []
+			for y in range(0, size):
+				tempHome = Home()
+				self.monstersInHouses = self.monstersInHouses + tempHome.numMonsters()
+				streetHomes.append(tempHome)
+				super.add_observer(tempHome)
+			neighborhood.append(streetHomes)
+		return neighborhood
 
 	#Getters
+	def getMonstersInHouses(self):
+		return self.monstersInHouses
 
-	def getMonstersInHouse(self):
-		return self.monstersInHouse
-
-	def getPeopleInHouse(self):
-		return self.peopleInHouse
+	def getGridSize(self):
+		return self.gridSize
 
 	def getHouses(self):
 		return self.houses
 
+	def getGridLength(self):
+		return self.gridLength
+
 
 	#Setters
-	def setMonstersInHouse(self, h):
-		self.monstersInHouse = h
-	def setPeopleInHouse(self, a):
-		self.peopleInHouse = a
+	def setMonstersInHouses(self, h):
+		self.monstersInHouses = h
+	def setGridSize(self, s):
+		self.gridSize = s
 	def setHouse(self, b):
 		self.houses = b
+	def setGridLength(self, l):
+		self.gridLength = l
 
 
 		
