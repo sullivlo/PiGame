@@ -94,6 +94,7 @@ class Game(object):
     def playerAttack(self):
         selected = self.getWeapon()
         weapon = self.player.getInventory()[selected]
+        weapon.decreaseUses()
         tmpAttValue = self.player.getAttack() * weapon.getModif()
         for monster in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
             if monster == 'Zombies':
@@ -121,10 +122,9 @@ class Game(object):
         print("\nTotal Monsters Remaining: {}".format(neighborhood.getMonstersInHouses()))
 
     def monstersAttack(self):
-    	tmpAttValue = 0
-    	for i in self.Neighborhood.getHouses()[self.player.getPosX()]
-    	[self.player.getPosY()].getMonsters():
-    		tmpAttValue = tmpAttValue + i.getAttack()
-    	self.player.setHealth(self.player.getHealth() - tmpAttValue)
+        tmpAttValue = 0
+        for i in self.Neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
+            tmpAttValue = tmpAttValue + i.getAttack()
+        self.player.setHealth(self.player.getHealth() - tmpAttValue)
         print("\nPlayer Attacked by the monster, yikes! Lost hp: {}".format(tmpAttValue))
     

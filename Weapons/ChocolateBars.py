@@ -1,5 +1,5 @@
 from random import *
-from Weapon import *
+from Weapons.Weapon import *
 
 class ChocolateBars(Weapon):
 
@@ -7,7 +7,7 @@ class ChocolateBars(Weapon):
     They can be used four times. '''
 
     def __init__(self):
-        super.__init__(self)
+       	super.__init__(self)
         super.setModif(self, genModif(self))
         super.setUses(self, 4)
         super.setName(self, 'ChocolateBars')

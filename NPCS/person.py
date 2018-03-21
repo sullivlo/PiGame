@@ -1,6 +1,5 @@
-
 from random import *
-from NPC import *
+from NPCS.NPC import *
 
 class person(NPC):
 	'''Persons are monsters/NPCs who have a health between of 100.

@@ -1,5 +1,5 @@
 from random import *
-from NPC import *
+from NPCS.NPC import *
 
 class Vampires(NPC):
 	'''Vampires are monsters/NPCs who have a health between 100 - 200.
