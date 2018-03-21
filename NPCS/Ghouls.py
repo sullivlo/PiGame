@@ -11,11 +11,12 @@ class Ghouls(NPC):
         NPC.__init__(self)
         self.name = 'Ghouls'
         self.health = self.genHealth()
+        self.attack = self.genAttack()
         self.unaffCandy = self.genUnaffCandy()
         self.altCandy = self.genAltCandy()
     
     def genHealth(self):
-        return uniform(40, 80)
+        return randint(40, 80)
     def genAttack(self):
         return uniform(15, 30)
     def genUnaffCandy(self):

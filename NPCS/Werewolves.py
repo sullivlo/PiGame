@@ -11,6 +11,7 @@ class Werewolves(NPC):
 		NPC.__init__(self)
 		self.name = 'Werewolves'
 		self.health = self.genHealth()
+		self.attack = self.genAttack()
 		self.unaffCandy = self.genUnaffCandy()
 		self.altCandy = self.genAltCandy()
 	def genHealth(self):
