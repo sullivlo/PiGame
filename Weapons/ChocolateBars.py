@@ -7,10 +7,10 @@ class ChocolateBars(Weapon):
     They can be used four times. '''
 
     def __init__(self):
-       	super.__init__(self)
-        super.setModif(self, genModif(self))
-        super.setUses(self, 4)
-        super.setName(self, 'ChocolateBars')
+       	Weapon.__init__(self)
+        self.modif = self.genModif()
+        self.uses = 4
+        self.name = 'ChocolateBars'
 
     def genModif(self):
         return random.uniform(2, 2.4)

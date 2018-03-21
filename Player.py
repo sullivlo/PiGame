@@ -6,25 +6,26 @@ class Player(object):
 
 	''' Base Player class. '''
 	def __init__(self):
-		self.health = genHealth(self)
-		self.attack = genAttack(self)
-		self.weapons = popWeapons(self)
+		self.health = self.genHealth()
+		self.attack = self.genAttack()
+		self.weapons = self.popWeapons()
 		self.posX = 0
 		self.posY = 0
         
         #Populate the weapon List that the play holds
         #Changed control flow beucase tempList created readablibity issues
 	def popWeapons(self):
-		HersheyKisses = Weapon.HersheyKisses()
+		hersheykisses = HersheyKisses.HersheyKisses()
 		weaponList = [HersheyKisses]
 		for size in range(0,9):
 			randWeapon = randint(0,2)
-			if randWeapon == 0:
-				weaponList.append(Weapon.SourStraws())
-			elif randWeapon == 1:
-				weaponList.append(Weapon.NerdBomb())
-			elif randWeapon == 2:
-				weaponList.append(Weapon.ChocolateBars())
+			weapon = tempList[randWeapon]
+			if weapon == 'SourStraws':
+				weaponList.append(SourStraws.SourStraws())
+			elif weapon == 'Nerdbomb':
+				weaponList.append(Nerdbomb.NerdBomb())
+			elif weapon == 'ChocolateBars':
+				weaponList.append(ChocolateBars.ChocolateBars())
 		return weaponList
 
         #Initialize Player 
@@ -38,7 +39,17 @@ class Player(object):
 		self.attack = random.randint(10, 20)
 
 	def genHealth(self):
-		self.health = random.randint(100, 125)
+
+		self.health = randint(100, 125)
+
+	def appendInventory(self, weapon):
+		if weapon == 'SourStraws':
+			weaponList.append(SourStraws.SourStraws())
+		elif weapon == 'Nerdbomb':
+			weaponList.append(Nerdbomb.NerdBomb())
+		elif weapon == 'ChocolateBars':
+			weaponList.append(ChocolateBars.ChocolateBars())
+
 	#Create Player class getters
 	def getHealth(self):
 		return self.health
