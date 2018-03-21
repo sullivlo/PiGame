@@ -41,7 +41,6 @@ class Neighborhood(Observable):
 	def getGridLength(self):
 		return self.gridLength
 
-
 	#Setters
 	def setMonstersInHouses(self, h):
 		self.monstersInHouses = h
