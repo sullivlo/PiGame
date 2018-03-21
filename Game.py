@@ -115,9 +115,9 @@ class Game(object):
     def getInventory(self): 
         invSlot = 0
         print("\n---------------------- Inventory ------------------------")
-        for weapon in self.player.getInventory():
+        for wp in self.player.getInventory():
             print('\tInventory Slot: {num}, Weapon: {name}, Uses: {uses}, Modifier {mod}'
-                .format(num=invSlot, name=weapon.getName(), uses=weapon.getUses(), mod = weapon.getModif()))
+                .format(num=invSlot, name=wp.getName(), uses=wp.getUses(), mod = wp.getModif()))
             invSlot = invSLot + 1
 
     def getWeapon(self):
