@@ -22,9 +22,9 @@ class Neighborhood(Observable):
 			streetHomes = []
 			for y in range(0, size):
 				tempHome = Home()
-				self.monstersInHouses = self.monstersInHouses + tempHome.numMonsters()
+				self.monstersInHouses = self.monstersInHouses + tempHome.numMonster()
 				streetHomes.append(tempHome)
-				super.add_observer(tempHome)
+				tempHome.add_observer(self)
 			neighborhood.append(streetHomes)
 		return neighborhood
 

@@ -16,7 +16,7 @@ class Vampires(NPC):
 	def genHealth(self):
 		return randint(100, 200)
 	def genAttack(self):
-		return random.uniform(10, 20)
+		return uniform(10, 20)
 	def genUnaffCandy(self):
 		return ['ChocolateBars']
 	def genAltCandy(self):

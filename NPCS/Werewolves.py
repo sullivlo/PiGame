@@ -16,7 +16,7 @@ class Werewolves(NPC):
 	def genHealth(self):
 		return 200
 	def genAttack(self):
-		return random.uniform(0, 40)
+		return uniform(0, 40)
 	def genUnaffCandy(self):
 		return ['ChocolateBars', 'SourStraws']
 

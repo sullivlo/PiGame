@@ -24,24 +24,24 @@ class Home(Observable, Observer):
             randSelected = randint(0, 4)
             select = possibleMon[randSelected]
             if select == 'Person':
-                per = person.person() 
-                per.add_Observer(self)
-                monsterList.append(per)
+                person = Person.Person() 
+                person.add_observer(self)
+                monsterList.append(person)
             if select == 'Vampire':
                 vampire = Vampires.Vampires() 
-                vampire.add_Observer(self)
+                vampire.add_observer(self)
                 monsterList.append(vampire)
             if select == 'Werewolves':
                 werewolves = Werewolves.Werewolves() 
-                werewolves.add_Observer(self)
+                werewolves.add_observer(self)
                 monsterList.append(werewolves)
             if select == 'Zombie':
-                zombie = Zombie.Zombies() 
-                zombie.add_Observer(self)
+                zombie = Zombies.Zombies() 
+                zombie.add_observer(self)
                 monsterList.append(zombie)
             if select == 'Ghouls':
                 ghouls = Ghouls.Ghouls() 
-                ghouls.add_Observer(self)
+                ghouls.add_observer(self)
                 monsterList.append(ghouls)
         return monsterList
 
@@ -56,9 +56,9 @@ class Home(Observable, Observer):
         return total
 
     def newPerson(self, position):
-        per = person.person()
-        per.add_Observer(self)
-        self.monsters.insert(position, per)
+        person = Person.Person()
+        person.add_observer(self)
+        self.monsters.insert(position, person)
 
     def deleteMonster(self, position):
         del self.monsters[position]

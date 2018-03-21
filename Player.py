@@ -40,7 +40,6 @@ class Player(object):
 		self.attack = randint(10, 20)
 
 	def genHealth(self):
-
 		self.health = randint(100, 125)
 
 	def appendInventory(self, weapon):
