@@ -7,10 +7,10 @@ class HersheyKisses(Weapon):
     They can be used a million times. '''
 
     def __init__(self):
-        super.__init__(self)
-        super.setModif(self, genModif(self))
-        super.setUses(self, 1000000)
-        super.setName(self, "HersheyKisses")
+        Weapon.__init__(self)
+        Weapon.setModif(self, self.genModif())
+        Weapon.setUses(self, 1000000)
+        Weapon.setName(self, "HersheyKisses")
 
     def genModif(self):
         return 1

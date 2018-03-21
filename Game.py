@@ -19,7 +19,7 @@ class Game(object):
 
     def run(self):
         while(self.gameover == False):
-
+            self.displayGrid()
             self.gameover = isGameOver()
             
 

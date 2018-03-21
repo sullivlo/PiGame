@@ -4,16 +4,16 @@ from Weapons import *
 class Player(object):
 	''' Base Player class. '''
 	def __init__(self):
-		self.health = genHealth(self)
-		self.attack = genAttack(self)
-		self.weapons = popWeapons(self)
+		self.health = self.genHealth()
+		self.attack = self.genAttack()
+		self.weapons = self.popWeapons()
 		self.posX = 0
 		self.posY = 0
         
         #Populate the weapon List that the play holds
         #Changed control flow beucase tempList created readablibity issues
 	def popWeapons(self):
-		HersheyKisses = Weapon.HersheyKisses()
+		hersheykisses = HersheyKisses.HersheyKisses()
 		weaponList = [HersheyKisses]
 		tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars']
 		for size in range(0,9):

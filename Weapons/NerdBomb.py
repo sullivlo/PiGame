@@ -8,10 +8,10 @@ class NerdBomb(Weapon):
 
  
     def __init__(self):
-        super.__init__(self)
-        super.setModif(self, genModif(self))
-        super.setUses(self, 1)
-        super.setName(self, "NerdBomb")
+        Weapon.__init__(self)
+        self.modif = self.genModif()
+        self.uses = 1
+        self.name = 'NerdBomb'
 
     def genModif(self):
         return random.uniform(3.5, 5)
