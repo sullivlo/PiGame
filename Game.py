@@ -20,7 +20,7 @@ class Game(object):
     def run(self):
         while(self.gameover == False):
             self.displayGrid()
-            self.gameover = isGameOver()
+            self.gameover = self.isGameOver()
             
 
     def displayGrid(self):
@@ -29,7 +29,7 @@ class Game(object):
         for x in range(0, size):
             pos = ""
             for y in range(0, size):
-                if self.player.getPosX() == x and self.player.getPosY == y:
+                if self.player.getPosX() == x and self.player.getPosY() == y:
                     pos = "{pos} P".format(pos = pos)
                 elif self.neighborhood.getHouses()[x][y].numMonster() == 0:
                     pos = "{pos} E".format(pos = pos)
@@ -67,7 +67,8 @@ class Game(object):
 
     def isGameOver(self):
         gameOver = False
-        if self.player.getHeath()<=0:
+        currHealth = self.player.getHealth()
+        if currHealth <= 0:
             gameOver = True
             print("Player has died. You have failed you mission. :(")
         elif self.neighborhood.getMonstersInHouses()==0:
@@ -113,6 +114,8 @@ class Game(object):
                     monster.setHealth(monster.getHeath()-(5*tmpAttValue))
                 else:
                     monster.setHealth(monster.getHeath()-tmpAttValue)
+            elif monster == 'Person':
+                self.addWeapon()
 
 
     def playerHealth(self):

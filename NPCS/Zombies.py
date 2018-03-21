@@ -11,12 +11,12 @@ class Zombies(NPC):
 		self.name = 'Zombies'
 		self.health = self.genHealth()
 		self.unaffCandy = self.genUnaffCandy()
-        self.altCandy = self.genAltCandy()
+		self.altCandy = self.genAltCandy()
 	
 	def genHealth(self):
-		return random.randint(50, 100)
+		return randint(50, 100)
 	def genAttack(self):
-		return random.randint(0, 10)
+		return randint(0, 10)
 	def genUnaffCandy(self):
 		return ['']
 	def genAltCandy(self):

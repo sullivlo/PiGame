@@ -12,11 +12,11 @@ class Werewolves(NPC):
 		self.name = 'Werewolves'
 		self.health = self.genHealth()
 		self.unaffCandy = self.genUnaffCandy()
-        self.altCandy = self.genAltCandy()
+		self.altCandy = self.genAltCandy()
 	def genHealth(self):
 		return 200
 	def genAttack(self):
-		return random.uniform(0, 40)
+		return uniform(0, 40)
 	def genUnaffCandy(self):
 		return ['ChocolateBars', 'SourStraws']
 

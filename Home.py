@@ -14,34 +14,34 @@ class Home(Observable, Observer):
     def __init__(self):
         Observable.__init__(self)
         Observer.__init__(self)
-        self.monsters = popHome(self)
+        self.monsters = self.popHome()
 
     def popHome(self):
         monsterList = []
-        homePop = random.randint(0,10)
+        homePop = randint(0,10)
         possibleMon = ['Person', 'Vampire', 'Werewolves','Zombie', 'Ghouls']
         for numMon in range(0, homePop):
-            randSelected = random.randint(0, 4)
-            selected = possibleMon[randSelected]
+            randSelected = randint(0, 4)
+            select = possibleMon[randSelected]
             if select == 'Person':
-                person = person.person() 
-                person.add_Observer(self)
+                person = Person.Person() 
+                person.add_observer(self)
                 monsterList.append(person)
             if select == 'Vampire':
                 vampire = Vampires.Vampires() 
-                vampire.add_Observer(self)
+                vampire.add_observer(self)
                 monsterList.append(vampire)
             if select == 'Werewolves':
                 werewolves = Werewolves.Werewolves() 
-                werewolves.add_Observer(self)
+                werewolves.add_observer(self)
                 monsterList.append(werewolves)
             if select == 'Zombie':
-                zombie = Zombie.Zombies() 
-                zombie.add_Observer(self)
+                zombie = Zombies.Zombies() 
+                zombie.add_observer(self)
                 monsterList.append(zombie)
             if select == 'Ghouls':
                 ghouls = Ghouls.Ghouls() 
-                ghouls.add_Observer(self)
+                ghouls.add_observer(self)
                 monsterList.append(ghouls)
         return monsterList
 
@@ -56,17 +56,17 @@ class Home(Observable, Observer):
         return total
 
     def newPerson(self, position):
-        person = person.person()
-        person.add_Observer(self)
+        person = Person.Person()
+        person.add_observer(self)
         self.monsters.insert(position, person)
 
     def deleteMonster(self, position):
         del self.monsters[position]
-        self.newPerson(self, position)
+        self.newPerson(position)
         self.update()
 
     def update(self):
-        super.notify()
+        self.notify()
 
 
 
