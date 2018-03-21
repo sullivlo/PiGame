@@ -19,7 +19,8 @@ class person(NPC):
 		return 100
 	def genAttack(self):
 
-		return 0
+		return -1
+
 	def genAltCandy(self):
 		return []
 
