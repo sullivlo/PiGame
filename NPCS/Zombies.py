@@ -1,5 +1,5 @@
 from random import *
-from NPC import *
+from NPCS.NPC import *
 
 class Zombies(NPC):
 	'''Zombies are monsters/NPCs who have a health between 50 - 100.

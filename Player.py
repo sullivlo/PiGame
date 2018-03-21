@@ -15,18 +15,17 @@ class Player(object):
         #Populate the weapon List that the play holds
         #Changed control flow beucase tempList created readablibity issues
 	def popWeapons(self):
-		HersheyKisses = Weapons.HersheyKisses()
+		HersheyKisses = Weapon.HersheyKisses()
 		weaponList = [HersheyKisses]
 		for size in range(0,9):
 			randWeapon = randint(0,2)
-	
-                        if randWeapon == 0: 
-                                weaponList.append(Weapons.SourStraws())
-                        elif randWeapon == 1:
-                                weaponList.append(Weapons.NerdBomb())
-                        elif randWeapon == 2:
-                                weaponList.append(Weapons.ChocolateBars())
-                return weaponList
+			if randWeapon == 0:
+				weaponList.append(Weapon.SourStraws())
+			elif randWeapon == 1:
+				weaponList.append(Weapon.NerdBomb())
+			elif randWeapon == 2:
+				weaponList.append(Weapon.ChocolateBars())
+		return weaponList
 
         #Initialize Player 
 	def decreaseHealth(self, h):

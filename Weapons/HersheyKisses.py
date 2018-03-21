@@ -1,5 +1,5 @@
 from random import *
-from Weapon import *
+from Weapons.Weapon import *
 
 class HersheyKisses(Weapon):
 
