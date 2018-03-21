@@ -18,7 +18,7 @@ class person(NPC):
 	def genHealth(self):
 		return 100
 	def genAttack(self):
-		return 0
+		return -1
 	def genAltCandy(self):
 		return []
 	def genUnaffCandy(self):
