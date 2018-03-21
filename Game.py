@@ -85,6 +85,35 @@ class Game(object):
                 .format(num=invSlot, name=wName, uses=wUses, mod = wModif))
             invSlot = invSLot + 1
 
+    def getWeapon(self):
+        invSize = 0
+        self.getInventory()
+        selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number."))
+        return selected
+
+    def playerAttack(self):
+        selected = self.getWeapon()
+        weapon = self.player.getInventory()[selected]
+        tmpAttValue = self.player.getAttack() * weapon.getModif()
+        for monster in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
+            if monster == 'Zombies':
+                if weapon in monster.getAltCandy():
+                    monster.setHealth(monster.getHeath()-(2*tmpAttValue))
+                else:
+                    monster.setHealth(monster.getHeath()-tmpAttValue)
+            elif monster == 'Vampires':
+                if weapon not in monster.getUnAffCandy():
+                    monster.setHealth(monster.getHeath()-tmpAttValue)
+            elif monster == 'Werewolves':
+                if weapon not in monster.getUnAffCandy():
+                    monster.setHealth(monster.getHeath()-tmpAttValue)
+            elif monster == 'Ghouls':
+                if weapon in monster.getAltCandy():
+                    monster.setHealth(monster.getHeath()-(5*tmpAttValue))
+                else:
+                    monster.setHealth(monster.getHeath()-tmpAttValue)
+
+
     def playerHealth(self):
         print("\nPlayer Health: {}".format(player.getHealth()))
 
@@ -96,9 +125,6 @@ class Game(object):
     	for i in self.Neighborhood.getHouses()[self.player.getPosX()]
     	[self.player.getPosY()].getMonsters():
     		tmpAttValue = tmpAttValue + i.getAttack()
-
     	self.player.setHealth(self.player.getHealth() - tmpAttValue)
-
-
-    	print("\nPlayer Attacked by the monster, yikes! Lost hp: {}".format(tmpAttValue))
+        print("\nPlayer Attacked by the monster, yikes! Lost hp: {}".format(tmpAttValue))
     
