@@ -133,10 +133,9 @@ class Game(object):
     def monstersAttack(self):
         tmpAttValue = 0
         for i in self.Neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
-            if i.getName() is not 'person':
-                tmpAttValue = tmpAttValue + i.getAttack()
-            else:
+            tmpAttValue = tmpAttValue + i.getAttack()
+            if i.getName() is 'Person':
                 self.addWeapon()
-        self.player.setHealth(self.player.getHealth() - tmpAttValue)
+        self.player.decreaseHealth(tmpAttValue)
         print("\nPlayer Attacked by the monster, yikes! Lost hp: {}".format(tmpAttValue))
     

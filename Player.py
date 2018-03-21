@@ -37,10 +37,10 @@ class Player(object):
 		self.health = self.health + h
 
 	def genAttack(self):
-		self.attack = randint(10, 20)
+		return randint(10, 20)
 
 	def genHealth(self):
-		self.health = randint(100, 125)
+		return randint(100, 125)
 
 	def appendInventory(self, weapon):
 		if weapon == 'SourStraws':
