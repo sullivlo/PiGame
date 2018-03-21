@@ -1,7 +1,7 @@
 from random import *
 from Weapons import *
 
-class Player(Object):
+class Player(object):
 	''' Base Player class. '''
 	def __init__(self):
 		self.health = genHealth(self)
