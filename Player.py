@@ -16,6 +16,7 @@ class Player(object):
         #Changed control flow beucase tempList created readablibity issues
 	def popWeapons(self):
 		hersheykisses = HersheyKisses.HersheyKisses()
+		print(hersheykisses.getName())
 		weaponList = [HersheyKisses]
 		tempList = ['SourStraws', 'Nerdbomb', 'ChocolateBars']
 		for size in range(0,9):
