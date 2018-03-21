@@ -1,6 +1,6 @@
 
 from random import *
-from NPC import *
+from NPCS.NPC import *
 
 class Werewolves(NPC):
 	'''Werewolves are monsters/NPCs whe have a health of 200.
