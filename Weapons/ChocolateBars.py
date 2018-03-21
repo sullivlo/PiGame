@@ -13,4 +13,4 @@ class ChocolateBars(Weapon):
         super.setName(self, 'ChocolateBars')
 
     def genModif(self):
-        return uniform(2, 2.4)
+        return random.uniform(2, 2.4)
