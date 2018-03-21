@@ -12,11 +12,16 @@ class person(NPC):
 		super.__init__(self)
 		super.setName(self, 'Person')
 		super.setHealth(self, genHealth(self))
+		super.setAltCandy(self, genAltCandy(self))
 		super.setUnaffCandy(self, genUnaffCandy(self))
 		
 	def genHealth(self):
 		return 100
 	def genAttack(self):
-		return -10 #Add health to the player
+
+		return 0
+	def genAltCandy(self):
+		return []
+
 	def genUnaffCandy(self):
 		return ['HersheyKisses','SourStraws','ChocolateBars','NerdBombs']
