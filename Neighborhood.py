@@ -13,7 +13,7 @@ class Neighborhood(Observable):
 		self.monstersInHouses = 0
 		self.gridLength = size
 		self.gridSize = size*size
-		self.houses = genHouses(self, self.gridLength)
+		self.houses = genHouses(self.gridLength)
 	
 	#generater
 	def genHouses(self, size):
@@ -21,7 +21,7 @@ class Neighborhood(Observable):
 		for x in range(0, size):
 			streetHomes = []
 			for y in range(0, size):
-				tempHome = Home()
+				tempHome = Home.Home()
 				self.monstersInHouses = self.monstersInHouses + tempHome.numMonsters()
 				streetHomes.append(tempHome)
 				super.add_observer(tempHome)

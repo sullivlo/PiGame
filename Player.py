@@ -18,12 +18,13 @@ class Player(object):
 		tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars']
 		for size in range(0,9):
 			randWeapon = randint(0,2)
-			if randWeapon == 0:
-				weaponList.append(Weapon.SourStraws())
-			elif randWeapon == 1:
-				weaponList.append(Weapon.NerdBomb())
-			elif randWeapon == 2:
-				weaponList.append(Weapon.ChocolateBars())
+			weapon = tempList[randWeapon]
+			if weapon == 'SourStraws':
+				weaponList.append(SourStraws.SourStraws())
+			elif weapon == 'Nerdbomb':
+				weaponList.append(Nerdbomb.NerdBomb())
+			elif weapon == 'ChocolateBars':
+				weaponList.append(ChocolateBars.ChocolateBars())
 		return weaponList
 
         #Initialize Player 
@@ -38,6 +39,14 @@ class Player(object):
 
 	def genHealth(self):
 		self.health = randint(100, 125)
+
+	def appendInventory(self, weapon):
+		if weapon == 'SourStraws':
+			weaponList.append(SourStraws.SourStraws())
+		elif weapon == 'Nerdbomb':
+			weaponList.append(Nerdbomb.NerdBomb())
+		elif weapon == 'ChocolateBars':
+			weaponList.append(ChocolateBars.ChocolateBars())
 	#Create Player class getters
 	def getHealth(self):
 		return self.health
