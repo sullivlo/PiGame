@@ -7,11 +7,11 @@ class Vampires(NPC):
 	by all weapons, but ChocolateBars.'''
 
 	def __init__(self):
-		super.__init__(self)
-		super.setName(self, 'Vampires')
-		super.setHealth(self, genHealth(self))
-		super.setUnaffCandy(self, genUnaffCandy(self))
-		super.setAltCandy(self, genAltCandy(self))
+		NPC.__init__(self)
+		self.name = 'Vampiress'
+		self.health = self.genHealth()
+		self.unaffCandy = self.genUnaffCandy()
+        self.altCandy = self.genAltCandy()
 		
 	def genHealth(self):
 		return randint(100, 200)

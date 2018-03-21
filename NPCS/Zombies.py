@@ -7,11 +7,11 @@ class Zombies(NPC):
 	by all weapons, but SourStraws have twice an affect.'''
 
 	def __init__(self):
-		super.__init__(self)
-		super.setName(self, 'Zombies')
-		super.setHealth(self, genHealth(self))
-		super.setUnaffCandy(self, genUnaffCandy(self))
-		super.setAltCandy(self, getAltCandy(self))	
+		NPC.__init__(self)
+		self.name = 'Zombies'
+		self.health = self.genHealth()
+		self.unaffCandy = self.genUnaffCandy()
+        self.altCandy = self.genAltCandy()
 	
 	def genHealth(self):
 		return random.randint(50, 100)

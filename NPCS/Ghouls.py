@@ -8,11 +8,11 @@ class Ghouls(NPC):
 
 
     def __init__(self):
-        super.__init__(self)
-        super.setName(self, 'Ghouls')
-        super.setHealth(self, genHealth(self))
-        super.setUnaffCandy(self, genUnaffCandy(self))
-        super.setAltCandy(self, genAltCandy(self))
+        NPC.__init__(self)
+        self.name = 'Ghouls'
+        self.health = self.genHealth()
+        self.unaffCandy = self.genUnaffCandy()
+        self.altCandy = self.genAltCandy()
     
     def genHealth(self):
         return random.uniform(40, 80)

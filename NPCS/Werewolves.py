@@ -8,12 +8,11 @@ class Werewolves(NPC):
 	by all weapons, but ChocolateBars or SourStraws.'''
 
 	def __init__(self):
-		super.__init__(self)
-		super.setName(self, 'Werewolves')
-		super.setHealth(self, genHealth(self))
-		super.setUnaffCandy(self, genUnaffCandy(self))
-		super.setAltCandy(self, getAltCandy(self))		
-
+		NPC.__init__(self)
+		self.name = 'Werewolves'
+		self.health = self.genHealth()
+		self.unaffCandy = self.genUnaffCandy()
+        self.altCandy = self.genAltCandy()
 	def genHealth(self):
 		return 200
 	def genAttack(self):

@@ -8,11 +8,12 @@ class person(NPC):
 	 A person can give you 1 piece of candy per turn. '''
 
 	def __init__(self):
-		super.__init__(self)
-		super.setName(self, 'Person')
-		super.setHealth(self, genHealth(self))
-		super.setAltCandy(self, genAltCandy(self))
-		super.setUnaffCandy(self, genUnaffCandy(self))
+		NPC.__init__(self)
+		self.name = 'Person'
+		self.health = self.genHealth()
+		self.unaffCandy = self.genUnaffCandy()
+        self.altCandy = self.genAltCandy()
+
 		
 	def genHealth(self):
 		return 100
@@ -25,3 +26,4 @@ class person(NPC):
 
 	def genUnaffCandy(self):
 		return ['HersheyKisses','SourStraws','ChocolateBars','NerdBombs']
+
