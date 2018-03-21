@@ -14,9 +14,9 @@ class Zombies(NPC):
 		super.setAltCandy(self, getAltCandy(self))	
 	
 	def genHealth(self):
-		return randint(50, 100)
+		return random.randint(50, 100)
 	def genAttack(self):
-		return randint(0, 10)
+		return random.randint(0, 10)
 	def genUnaffCandy(self):
 		return ['']
 	def genAltCandy(self):
