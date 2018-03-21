@@ -116,15 +116,24 @@ class Game(object):
 
 
     def playerHealth(self):
-        print("\nPlayer Health: {}".format(player.getHealth()))
+        print("\nPlayer Health: {}".format(self.player.getHealth()))
 
     def totalMonsterCount(self):
-        print("\nTotal Monsters Remaining: {}".format(neighborhood.getMonstersInHouses()))
+        print("\nTotal Monsters Remaining: {}".format(self.neighborhood.getMonstersInHouses()))
+
+    def addWeapon(self):
+        if len(self.player.getInventory()) < 10:
+            tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars', 'HersheyKisses']
+            weapon = random.randint(0,3)
+            self.player.appendInventory(tempList[weapon])
 
     def monstersAttack(self):
         tmpAttValue = 0
         for i in self.Neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
-            tmpAttValue = tmpAttValue + i.getAttack()
+            if i.getName() is not 'person':
+                tmpAttValue = tmpAttValue + i.getAttack()
+            else:
+                self.addWeapon()
         self.player.setHealth(self.player.getHealth() - tmpAttValue)
         print("\nPlayer Attacked by the monster, yikes! Lost hp: {}".format(tmpAttValue))
     

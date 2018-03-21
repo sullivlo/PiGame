@@ -8,9 +8,9 @@ class HersheyKisses(Weapon):
 
     def __init__(self):
         Weapon.__init__(self)
-        Weapon.setModif(self, self.genModif())
-        Weapon.setUses(self, 1000000)
-        Weapon.setName(self, "HersheyKisses")
+        self.modif =  self.genModif()
+        self.uses = 1000000
+        self.name = 'HersheyKisses'
 
     def genModif(self):
         return 1

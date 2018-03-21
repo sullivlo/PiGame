@@ -7,10 +7,10 @@ class SourStraws(Weapon):
     They can be used twice. '''
 
     def __init__(self):
-        super.__init__()
-        super.setModif(self.genModif())
-        super.setUses(2)
-        super.setName("SourStraws")
+        Weapon.__init__(self)
+        self.modif = self.genModif()
+        self.uses = 2
+        self.name = 'SourStraws'
 
     def genModif(self):
         return random.uniform(1, 1.75)
