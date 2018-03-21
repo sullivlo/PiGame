@@ -113,6 +113,8 @@ class Game(object):
                     monster.setHealth(monster.getHeath()-(5*tmpAttValue))
                 else:
                     monster.setHealth(monster.getHeath()-tmpAttValue)
+            elif monster == 'Person':
+                self.addWeapon()
 
 
     def playerHealth(self):

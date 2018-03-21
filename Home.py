@@ -14,19 +14,19 @@ class Home(Observable, Observer):
     def __init__(self):
         Observable.__init__(self)
         Observer.__init__(self)
-        self.monsters = popHome(self)
+        self.monsters = self.popHome()
 
     def popHome(self):
         monsterList = []
-        homePop = random.randint(0,10)
+        homePop = randint(0,10)
         possibleMon = ['Person', 'Vampire', 'Werewolves','Zombie', 'Ghouls']
         for numMon in range(0, homePop):
-            randSelected = random.randint(0, 4)
-            selected = possibleMon[randSelected]
+            randSelected = randint(0, 4)
+            select = possibleMon[randSelected]
             if select == 'Person':
-                person = person.person() 
-                person.add_Observer(self)
-                monsterList.append(person)
+                per = person.person() 
+                per.add_Observer(self)
+                monsterList.append(per)
             if select == 'Vampire':
                 vampire = Vampires.Vampires() 
                 vampire.add_Observer(self)
@@ -56,17 +56,17 @@ class Home(Observable, Observer):
         return total
 
     def newPerson(self, position):
-        person = person.person()
-        person.add_Observer(self)
-        self.monsters.insert(position, person)
+        per = person.person()
+        per.add_Observer(self)
+        self.monsters.insert(position, per)
 
     def deleteMonster(self, position):
         del self.monsters[position]
-        self.newPerson(self, position)
+        self.newPerson(position)
         self.update()
 
     def update(self):
-        super.notify()
+        self.notify()
 
 
 

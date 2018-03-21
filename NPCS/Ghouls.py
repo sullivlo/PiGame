@@ -15,9 +15,9 @@ class Ghouls(NPC):
         self.altCandy = self.genAltCandy()
     
     def genHealth(self):
-        return random.uniform(40, 80)
+        return uniform(40, 80)
     def genAttack(self):
-        return random.uniform(15, 30)
+        return uniform(15, 30)
     def genUnaffCandy(self):
         return ['']
     def genAltCandy(self):

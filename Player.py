@@ -17,13 +17,14 @@ class Player(object):
 	def popWeapons(self):
 		hersheykisses = HersheyKisses.HersheyKisses()
 		weaponList = [HersheyKisses]
+		tempList = ['SourStraws', 'Nerdbomb', 'ChocolateBars']
 		for size in range(0,9):
 			randWeapon = randint(0,2)
 			weapon = tempList[randWeapon]
 			if weapon == 'SourStraws':
 				weaponList.append(SourStraws.SourStraws())
 			elif weapon == 'Nerdbomb':
-				weaponList.append(Nerdbomb.NerdBomb())
+				weaponList.append(NerdBomb.NerdBomb())
 			elif weapon == 'ChocolateBars':
 				weaponList.append(ChocolateBars.ChocolateBars())
 		return weaponList
@@ -36,7 +37,7 @@ class Player(object):
 		self.health = self.health + h
 
 	def genAttack(self):
-		self.attack = random.randint(10, 20)
+		self.attack = randint(10, 20)
 
 	def genHealth(self):
 

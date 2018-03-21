@@ -12,7 +12,7 @@ class Werewolves(NPC):
 		self.name = 'Werewolves'
 		self.health = self.genHealth()
 		self.unaffCandy = self.genUnaffCandy()
-        self.altCandy = self.genAltCandy()
+		self.altCandy = self.genAltCandy()
 	def genHealth(self):
 		return 200
 	def genAttack(self):

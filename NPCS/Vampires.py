@@ -11,13 +11,13 @@ class Vampires(NPC):
 		self.name = 'Vampiress'
 		self.health = self.genHealth()
 		self.unaffCandy = self.genUnaffCandy()
-        self.altCandy = self.genAltCandy()
+		self.altCandy = self.genAltCandy()
 		
 	def genHealth(self):
 		return randint(100, 200)
 	def genAttack(self):
 		return random.uniform(10, 20)
 	def genUnaffCandy(self):
-		return ['ChocolateBars']	
+		return ['ChocolateBars']
 	def genAltCandy(self):
 		return ['']

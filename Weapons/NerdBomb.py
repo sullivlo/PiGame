@@ -14,4 +14,4 @@ class NerdBomb(Weapon):
         self.name = 'NerdBomb'
 
     def genModif(self):
-        return random.uniform(3.5, 5)
+        return uniform(3.5, 5)
