@@ -10,6 +10,7 @@ class Vampires(NPC):
 		NPC.__init__(self)
 		self.name = 'Vampiress'
 		self.health = self.genHealth()
+		self.attack = self.genAttack()
 		self.unaffCandy = self.genUnaffCandy()
 		self.altCandy = self.genAltCandy()
 		

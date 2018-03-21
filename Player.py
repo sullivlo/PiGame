@@ -22,11 +22,14 @@ class Player(object):
 			randWeapon = randint(0,2)
 			weapon = tempList[randWeapon]
 			if weapon == 'SourStraws':
-				weaponList.append(SourStraws.SourStraws())
+				sourstraws = SourStraws.SourStraws()
+				weaponList.append(sourstraws)
 			elif weapon == 'Nerdbomb':
-				weaponList.append(NerdBomb.NerdBomb())
+				nerdbomb = NerdBomb.NerdBomb()
+				weaponList.append(nerdbomb)
 			elif weapon == 'ChocolateBars':
-				weaponList.append(ChocolateBars.ChocolateBars())
+				chocolatebars = ChocolateBars.ChocolateBars()
+				weaponList.append(chocolatebars)
 		return weaponList
 
         #Initialize Player 

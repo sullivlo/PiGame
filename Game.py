@@ -11,17 +11,54 @@ class Game(object):
 
     def __init__(self):
         self.player = Player.Player()
-        self.neighborhood = Neighborhood.Neighborhood(randint(2, 10))
+        self.neighborhood = Neighborhood.Neighborhood(randint(2, 5))
         self.turn = True  # player turn = true, monster turn = false
                           #    once anyone attacks you switch to what is itsnt now
         self.gameover = False
 
 
     def run(self):
+        print("\nOh No! You have woken up in your home today to find "+
+            "that some of you family has been mutated to monsters.")
+        print("\nBut it gets. You have walked outside and see that "+
+            "some of your neighbors have had the same fate.")
+        print("\nIt is your mission to not only save your family but"+
+            " to save the entire neighborhood.")
+        print("Using all of your Halloween candy change the monsters"+
+            " back to your friends and family members.")
+        print("Here is the map of the neighborhood. You are P. "+
+            "If a house is empty an E will display at its place."+
+            " All the houses that still have monsters will have an O.")
+
+
         while(self.gameover == False):
             self.displayGrid()
+            self.currentHome()
+            cmd = input("\nWhat action would you like to take?\n")
+            cmd = cmd.lower()
+            if cmd == "attack":
+                self.playerAttack()
+            elif cmd == "move":
+                self.move()
+            elif cmd == "inventory":
+                self.getInventory()
+            elif cmd == "health":
+                self.playerHealth()
+            elif cmd == "monstersLeft":
+                self.totalMonsterCount()
+            elif cmd == "quit":
+                self.gameover = True
+            else:
+                print("Not a vaild action.")
             self.gameover = self.isGameOver()
-            
+
+    def currentHome(self):
+        print("\nCurrent home has:")
+        for mon in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
+            if mon.getName() is not 'Person':
+                print("\n{name} with {health}".format(name = mon.getName(), health = mon.getHealth()))
+            else:
+                print("\nPerson here.")
 
     def displayGrid(self):
         print("\n---------------Neighborhood----------------")
@@ -39,8 +76,8 @@ class Game(object):
 
     def move(self):
         nextPos = input("\nWhat direction would you like to go in?"
-            +"\nN for North\nS for South\nE for East\nW for West").upper()
-        if isValidMove(nextPost):
+            +"\nN for North\nS for South\nE for East\nW for West\n").upper()
+        if self.isValidMove(nextPos):
             if (nextPos == 'N'):
                 self.player.setPosY(self.player.getPosY()-1)
             elif (nextPos == 'W'):
@@ -54,15 +91,15 @@ class Game(object):
 
 
     def isValidMove(self, nextPos):
-        validMove = true
+        validMove = True
         if (nextPos == 'N') and (self.player.getPosY() == 0):
-            validMove = false
+            validMove = False
         elif (nextPos == 'W') and (self.player.getPosX == 0):
-            validMove = false
+            validMove = False
         elif (nextPos == 'S') and (self.player.getPosY == self.neighborhood.getGridLength()):
-            validMove = false
+            validMove = False
         elif (nextPos == 'E') and (self.player.getPosY == self.neighborhood.getGridLength()):    
-            validMove = false
+            validMove = False
         return validMove
 
     def isGameOver(self):
@@ -70,20 +107,17 @@ class Game(object):
         currHealth = self.player.getHealth()
         if currHealth <= 0:
             gameOver = True
-            print("Player has died. You have failed you mission. :(")
+            print("\nPlayer has died. You have failed you mission. :(")
         elif self.neighborhood.getMonstersInHouses()==0:
             gameOver = True
-            print("You have killed all the Monster and have saved your friends!")
+            print("\nYou have killed all the Monster and have saved your friends!")
 
     def getInventory(self): 
         invSlot = 0
-        print("\n--------------------------- Inventory -----------------------------------")
+        print("\n---------------------- Inventory ------------------------")
         for weapon in self.player.getInventory():
-            wName = weapon.getName()
-            wUses = weapon.getUses()
-            wModif = weapon.getModif()
             print('\tInventory Slot: {num}, Weapon: {name}, Uses: {uses}, Modifier {mod}'
-                .format(num=invSlot, name=wName, uses=wUses, mod = wModif))
+                .format(num=invSlot, name=weapon.getName(), uses=weapon.getUses(), mod = weapon.getModif()))
             invSlot = invSLot + 1
 
     def getWeapon(self):
@@ -132,7 +166,7 @@ class Game(object):
 
     def monstersAttack(self):
         tmpAttValue = 0
-        for i in self.Neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
+        for i in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
             tmpAttValue = tmpAttValue + i.getAttack()
             if i.getName() is 'Person':
                 self.addWeapon()

@@ -10,13 +10,14 @@ class Zombies(NPC):
 		NPC.__init__(self)
 		self.name = 'Zombies'
 		self.health = self.genHealth()
+		self.attack = self.genAttack()
 		self.unaffCandy = self.genUnaffCandy()
 		self.altCandy = self.genAltCandy()
 	
 	def genHealth(self):
 		return randint(50, 100)
 	def genAttack(self):
-		return randint(0, 10)
+		return uniform(0, 10)
 	def genUnaffCandy(self):
 		return ['']
 	def genAltCandy(self):
