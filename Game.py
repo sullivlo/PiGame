@@ -16,6 +16,27 @@ class Game(object):
                           #    once anyone attacks you switch to what is itsnt now
         self.gameover = False
 
+
+    def run(self):
+        while(self.gameover == False):
+
+            self.gameover = isGameOver()
+            
+
+    def displayGrid(self):
+        print("\n---------------Neighborhood----------------")
+        size = self.neighborhood.getGridLength()
+        for x in range(0, size):
+            pos = ""
+            for y in range(0, size):
+                if self.player.getPosX() == x and self.player.getPosY == y:
+                    pos = "{pos} P".format(pos = pos)
+                elif self.neighborhood.getHouses()[x][y].numMonster() == 0:
+                    pos = "{pos} E".format(pos = pos)
+                else:
+                    pos = "{pos} O".format(pos = pos)
+            print("\n{pos}".format(pos = pos))
+
     def move(self):
         nextPos = input("\nWhat direction would you like to go in?"
             +"\nN for North\nS for South\nE for East\nW for West").upper()
@@ -44,6 +65,15 @@ class Game(object):
             validMove = false
         return validMove
 
+    def isGameOver(self):
+        gameOver = False
+        if self.player.getHeath()<=0:
+            gameOver = True
+            print("Player has died. You have failed you mission. :(")
+        elif self.neighborhood.getMonstersInHouses()==0:
+            gameOver = True
+            print("You have killed all the Monster and have saved your friends!")
+
     def getInventory(self): 
         invSlot = 0
         print("\n--------------------------- Inventory -----------------------------------")
@@ -54,6 +84,7 @@ class Game(object):
             print('\tInventory Slot: {num}, Weapon: {name}, Uses: {uses}, Modifier {mod}'
                 .format(num=invSlot, name=wName, uses=wUses, mod = wModif))
             invSlot = invSLot + 1
+
     def playerHealth(self):
         print("\nPlayer Health: {}".format(player.getHealth()))
 
