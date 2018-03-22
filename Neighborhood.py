@@ -44,13 +44,18 @@ class Neighborhood(Observable):
 	#Setters
 	def setMonstersInHouses(self, h):
 		self.monstersInHouses = h
+
 	def setGridSize(self, s):
 		self.gridSize = s
+
 	def setHouse(self, b):
 		self.houses = b
+
 	def setGridLength(self, l):
 		self.gridLength = l
 
+	def update(self):
+		self.monstersInHouses = self.monstersInHouses - 1
 
 		
 

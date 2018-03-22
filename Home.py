@@ -66,7 +66,7 @@ class Home(Observable, Observer):
         self.update()
 
     def update(self):
-        self.notify()
+        self.updateObserver()
 
 
 

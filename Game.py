@@ -33,37 +33,51 @@ class Game(object):
 
         while(self.gameover == False):
             print("\n---------------Player Turn----------------")
-            self.displayGrid()
-            self.currentHome()
-            cmd = input("\nWhat action would you like to take?\n")
-            cmd = cmd.lower()
-            if cmd == "attack":
-                self.playerAttack()
-            elif cmd == "move":
-                self.move()
-            elif cmd == "inventory":
-                self.getInventory()
-            elif cmd == "health":
-                self.playerHealth()
-            elif cmd == "monstersLeft":
-                self.totalMonsterCount()
-            elif cmd == "quit":
-                self.gameover = True
-                return
-            else:
-                print("Not a vaild action.")
+            self.display()
+            attack = False
+            while(attack == False):
+                cmd = input("\nWhat action would you like to take?\n")
+                cmd = cmd.lower()
+                if cmd == "attack":
+                    self.playerAttack()
+                    attack = True
+                elif cmd == "move":
+                    self.move()
+                    self.display()
+                elif cmd == "inventory":
+                    self.getInventory()
+                elif cmd == "health":
+                    self.playerHealth()
+                elif cmd == "monstersleft":
+                    self.totalMonsterCount()
+                elif cmd == "quit":
+                    self.gameover = True
+                    return
+                else:
+                    print("Not a vaild action.")
             self.gameover = self.isGameOver()
             if(self.gameover == False):
                 print("\n---------------Monster's Turn----------------")
                 self.monstersAttack()
+                self.gameover = self.isGameOver()
 
     def currentHome(self):
         print("\nCurrent home has:")
-        for mon in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
+        monst = self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters()
+        if len(monst)==0:
+            print("This house is empty.")
+        for mon in monst:
             if mon.getName() is not 'Person':
-                print("\n{name} with {health}".format(name = mon.getName(), health = mon.getHealth()))
+                print("{name} with {health}".format(name = mon.getName(), health = mon.getHealth()))
             else:
-                print("\nPerson here.")
+                print("Person here.")
+
+    def display(self):
+        self.displayGrid()
+        self.currentHome()
+        self.displayOptions()
+    def displayOptions(self):
+        print("\nattack|move|inventory|health|monstersLeft|quit")
 
     def displayGrid(self):
         print("\n---------------Neighborhood----------------")
@@ -97,9 +111,6 @@ class Game(object):
 
     def isValidMove(self, nextPos):
         validMove = True
-        print(self.neighborhood.getGridLength())
-        print(self.player.getPosX())
-        print(self.player.getPosY())
         if (nextPos == 'N') and (self.player.getPosY() == 0):
             validMove = False
         elif (nextPos == 'W') and (self.player.getPosX() == 0):
@@ -129,11 +140,11 @@ class Game(object):
         invSize = 0
         self.getInventory()
         selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number.\n"))
-        tempWeapon = self.player.getInventory()[selected]
-        return tempWeapon
+        return selected
 
     def playerAttack(self):
-        tempWeapon = self.getWeapon()
+        selected = self.getWeapon()
+        tempWeapon = self.player.getInventory()[selected]
         tempWeapon.decreaseUses()
         tmpAttValue = self.player.getAttack() * tempWeapon.getModif()
         pos = 0
@@ -159,8 +170,11 @@ class Game(object):
                 self.addWeapon()
             if monster.getHealth() <= 0:
                 currHouse.deleteMonster(pos)
-                currHouse.newPerson(pos)
+                self.neighborhood.update()
             pos = pos +1
+        if tempWeapon.getUses() == 0:
+            self.player.deleteWeapon(selected)
+
 
 
 
