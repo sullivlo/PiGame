@@ -32,6 +32,7 @@ class Game(object):
 
 
         while(self.gameover == False):
+            print("\n---------------Player Turn----------------")
             self.displayGrid()
             self.currentHome()
             cmd = input("\nWhat action would you like to take?\n")
@@ -52,6 +53,9 @@ class Game(object):
             else:
                 print("Not a vaild action.")
             self.gameover = self.isGameOver()
+            if(self.gameover == False):
+                print("\n---------------Monster's Turn----------------")
+                self.monstersAttack()
 
     def currentHome(self):
         print("\nCurrent home has:")
@@ -64,9 +68,9 @@ class Game(object):
     def displayGrid(self):
         print("\n---------------Neighborhood----------------")
         size = self.neighborhood.getGridLength()
-        for x in range(0, size):
+        for y in range(0, size):
             pos = ""
-            for y in range(0, size):
+            for x in range(0, size):
                 if self.player.getPosX() == x and self.player.getPosY() == y:
                     pos = "{pos} P".format(pos = pos)
                 elif self.neighborhood.getHouses()[x][y].numMonster() == 0:
@@ -93,13 +97,16 @@ class Game(object):
 
     def isValidMove(self, nextPos):
         validMove = True
+        print(self.neighborhood.getGridLength())
+        print(self.player.getPosX())
+        print(self.player.getPosY())
         if (nextPos == 'N') and (self.player.getPosY() == 0):
             validMove = False
-        elif (nextPos == 'W') and (self.player.getPosX == 0):
+        elif (nextPos == 'W') and (self.player.getPosX() == 0):
             validMove = False
-        elif (nextPos == 'S') and (self.player.getPosY == self.neighborhood.getGridLength()):
+        elif (nextPos == 'S') and (self.player.getPosY() == self.neighborhood.getGridLength()-1):
             validMove = False
-        elif (nextPos == 'E') and (self.player.getPosY == self.neighborhood.getGridLength()):    
+        elif (nextPos == 'E') and (self.player.getPosX() == self.neighborhood.getGridLength()-1):    
             validMove = False
         return validMove
 
@@ -122,32 +129,31 @@ class Game(object):
         invSize = 0
         self.getInventory()
         selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number.\n"))
-        return selected
+        tempWeapon = self.player.getInventory()[selected]
+        return tempWeapon
 
     def playerAttack(self):
-        selected = self.getWeapon()
-        weaponName = self.player.getWeaponName(selected)
-        weaponMod = self.player.getWeaponMod(selected)
-        self.player.decreaseWeaponUses(selected)
-        tmpAttValue = self.player.getAttack() * weaponMod
+        tempWeapon = self.getWeapon()
+        tempWeapon.decreaseUses()
+        tmpAttValue = self.player.getAttack() * tempWeapon.getModif()
         pos = 0
         currHouse = self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()]
         for monster in currHouse.getMonsters():
             if monster.getName() == 'Zombies':
                 print("Made it Z1")
-                if weaponName in monster.getAltCandy():
+                if tempWeapon.getName() in monster.getAltCandy():
                     monster.setHealth(monster.getHealth()-(2*tmpAttValue))
                 else:
                     print("Made it Z2")
                     monster.setHealth(monster.getHealth()-tmpAttValue)
             elif monster.getName() == 'Vampires':
-                if weaponName not in monster.getUnaffCandy():
+                if tempWeapon.getName() not in monster.getUnaffCandy():
                     monster.setHealth(monster.getHealth()-tmpAttValue)
             elif monster.getName() == 'Werewolves':
-                if weaponName not in monster.getUnaffCandy():
+                if tempWeapon.getName() not in monster.getUnaffCandy():
                     monster.setHealth(monster.getHealth()-tmpAttValue)
             elif monster.getName() == 'Ghouls':
-                if weaponName in monster.getAltCandy():
+                if tempWeapon.getName() in monster.getAltCandy():
                     monster.setHealth(monster.getHealth()-(5*tmpAttValue))
                 else:
                     monster.setHealth(monster.getHealth()-tmpAttValue)
