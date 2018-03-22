@@ -35,7 +35,7 @@ class NPC(Observable):
 		return self.name
 	def getAlive(self):
 		return self.alive
-	def getAltCabdy(self):
+	def getAltCandy(self):
 		return self.altCandy
 	
 	#Setters
@@ -49,6 +49,5 @@ class NPC(Observable):
 		self.name = n
 	def setAlive(self, a):
 		self.alive = a
-
 	def setAltCandy(self, x):
 		self.altCandy = x

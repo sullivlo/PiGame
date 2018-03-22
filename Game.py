@@ -48,6 +48,7 @@ class Game(object):
                 self.totalMonsterCount()
             elif cmd == "quit":
                 self.gameover = True
+                return
             else:
                 print("Not a vaild action.")
             self.gameover = self.isGameOver()
@@ -111,45 +112,52 @@ class Game(object):
         elif self.neighborhood.getMonstersInHouses()==0:
             gameOver = True
             print("\nYou have killed all the Monster and have saved your friends!")
+        return gameOver
 
     def getInventory(self): 
-        invSlot = 0
         print("\n---------------------- Inventory ------------------------")
-        for wp in self.player.getInventory():
-            print('\tInventory Slot: {num}, Weapon: {name}, Uses: {uses}, Modifier {mod}'
-                .format(num=invSlot, name=wp.getName(), uses=wp.getUses(), mod = wp.getModif()))
-            invSlot = invSLot + 1
+        self.player.printInventory()
 
     def getWeapon(self):
         invSize = 0
         self.getInventory()
-        selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number."))
+        selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number.\n"))
         return selected
 
     def playerAttack(self):
         selected = self.getWeapon()
-        weapon = self.player.getInventory()[selected]
-        weapon.decreaseUses()
-        tmpAttValue = self.player.getAttack() * weapon.getModif()
-        for monster in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():
-            if monster == 'Zombies':
-                if weapon in monster.getAltCandy():
-                    monster.setHealth(monster.getHeath()-(2*tmpAttValue))
+        weaponName = self.player.getWeaponName(selected)
+        weaponMod = self.player.getWeaponMod(selected)
+        self.player.decreaseWeaponUses(selected)
+        tmpAttValue = self.player.getAttack() * weaponMod
+        pos = 0
+        currHouse = self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()]
+        for monster in currHouse.getMonsters():
+            if monster.getName() == 'Zombies':
+                print("Made it Z1")
+                if weaponName in monster.getAltCandy():
+                    monster.setHealth(monster.getHealth()-(2*tmpAttValue))
                 else:
-                    monster.setHealth(monster.getHeath()-tmpAttValue)
-            elif monster == 'Vampires':
-                if weapon not in monster.getUnAffCandy():
-                    monster.setHealth(monster.getHeath()-tmpAttValue)
-            elif monster == 'Werewolves':
-                if weapon not in monster.getUnAffCandy():
-                    monster.setHealth(monster.getHeath()-tmpAttValue)
-            elif monster == 'Ghouls':
-                if weapon in monster.getAltCandy():
-                    monster.setHealth(monster.getHeath()-(5*tmpAttValue))
+                    print("Made it Z2")
+                    monster.setHealth(monster.getHealth()-tmpAttValue)
+            elif monster.getName() == 'Vampires':
+                if weaponName not in monster.getUnaffCandy():
+                    monster.setHealth(monster.getHealth()-tmpAttValue)
+            elif monster.getName() == 'Werewolves':
+                if weaponName not in monster.getUnaffCandy():
+                    monster.setHealth(monster.getHealth()-tmpAttValue)
+            elif monster.getName() == 'Ghouls':
+                if weaponName in monster.getAltCandy():
+                    monster.setHealth(monster.getHealth()-(5*tmpAttValue))
                 else:
-                    monster.setHealth(monster.getHeath()-tmpAttValue)
-            elif monster == 'Person':
+                    monster.setHealth(monster.getHealth()-tmpAttValue)
+            elif monster.getName() == 'Person':
                 self.addWeapon()
+            if monster.getHealth() <= 0:
+                currHouse.deleteMonster(pos)
+                currHouse.newPerson(pos)
+            pos = pos +1
+
 
 
     def playerHealth(self):
@@ -161,7 +169,7 @@ class Game(object):
     def addWeapon(self):
         if len(self.player.getInventory()) < 10:
             tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars', 'HersheyKisses']
-            weapon = random.randint(0,3)
+            weapon = randint(0,3)
             self.player.appendInventory(tempList[weapon])
 
     def monstersAttack(self):
