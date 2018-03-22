@@ -57,6 +57,9 @@ class Player(object):
 		elif weapon == 'ChocolateBars':
 			self.weapons.append(ChocolateBars.ChocolateBars())
 
+	def deleteWeapon(self, position):
+		del self.weapons[position]
+
 	#Create Player class getters
 	def getHealth(self):
 		return self.health
