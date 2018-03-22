@@ -36,9 +36,6 @@ class Player(object):
 	def decreaseHealth(self, h):
 		self.health = self.health - h
 
-	def increaseHealth(self, h):
-		self.health = self.health + h
-
 	def genAttack(self):
 		return randint(10, 20)
 
@@ -60,18 +57,9 @@ class Player(object):
 		elif weapon == 'ChocolateBars':
 			self.weapons.append(ChocolateBars.ChocolateBars())
 
-	def decreaseWeaponUses(self, selected):
-		self.weapons[selected].decreaseUses()
-
 	#Create Player class getters
 	def getHealth(self):
 		return self.health
-
-	def getWeaponName(self, selected):
-		return self.weapons[selected].getName()
-
-	def getWeaponMod(self, selected):
-		return self.weapons[selected].getModif()
 
 	def getAttack(self):
 		return self.attack
