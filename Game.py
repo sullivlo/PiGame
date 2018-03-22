@@ -26,9 +26,9 @@ class Game(object):
             " to save the entire neighborhood.")
         print("Using all of your Halloween candy change the monsters"+
             " back to your friends and family members.")
-        print("Here is the map of the neighborhood. You are P. "+
-            "If a house is empty an E will display at its place."+
-            " All the houses that still have monsters will have an O.")
+        print("\nHere is the map of the neighborhood. You are P. "+
+            "\nIf a house is empty an E will display at its place."+
+            " \nAll the houses that still have monsters will have an O.")
 
 
         while(self.gameover == False):
@@ -76,7 +76,9 @@ class Game(object):
         self.displayGrid()
         self.currentHome()
         self.displayOptions()
+
     def displayOptions(self):
+        print("These are you options. Attacking ends your turn.")
         print("\nattack|move|inventory|health|monstersLeft|quit")
 
     def displayGrid(self):
@@ -137,9 +139,16 @@ class Game(object):
         self.player.printInventory()
 
     def getWeapon(self):
-        invSize = 0
         self.getInventory()
-        selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number.\n"))
+        selected = 0
+        try:
+            selected = int(input("\nWhat weopon would you like to use?\nInput the Inventory Slot number.\n"))
+            if selected < 0 or selected > len(self.player.getInventory()):
+                print("Not a valid slot. Try again")
+                selected = self.getWeapon()
+        except ValueError as e:
+            print("Not a valid slot. Try again")
+            selected = self.getWeapon()
         return selected
 
     def playerAttack(self):
