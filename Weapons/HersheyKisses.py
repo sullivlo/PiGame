@@ -1,3 +1,4 @@
+import math
 from random import *
 from Weapons.Weapon import *
 
@@ -12,6 +13,7 @@ class HersheyKisses(Weapon):
         self.uses = 1000000
         self.name = 'HersheyKisses'
 
+    '''genModif(self) sets the modif value to 1'''
     def genModif(self):
         return 1
 
