@@ -1,3 +1,4 @@
+import math
 from random import *
 from Weapons.Weapon import *
 
@@ -12,5 +13,7 @@ class SourStraws(Weapon):
         self.uses = 2
         self.name = 'SourStraws'
 
+    '''genModif(self) sets the modif value of the weapon to a
+    random double between 1 and 1.75'''
     def genModif(self):
-        return uniform(1, 1.75)
+        return round(uniform(1, 1.75),2)

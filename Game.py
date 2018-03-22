@@ -1,4 +1,3 @@
-import math
 from random import *
 import Neighborhood
 import Player
@@ -16,7 +15,9 @@ class Game(object):
                           #    once anyone attacks you switch to what is itsnt now
         self.gameover = False
 
-
+    ''' run(self) runs the entire game. It contains two while loops. One is the actual
+    game while loop that checks for if the game is over. The other while loop is for
+    checking if the player is attacking. When the player attacks his turn is over.'''
     def run(self):
         print("\nOh No! You have woken up in your home today to find "+
             "that some of you family has been mutated to monsters.")
@@ -61,6 +62,8 @@ class Game(object):
                 self.monstersAttack()
                 self.gameover = self.isGameOver()
 
+    '''currentHome(self) prints the list of current monsters in a given home. If there is a person
+    it will also print a person. If the house is empty it will state that as well.'''
     def currentHome(self):
         print("\nCurrent home has:")
         monst = self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters()
@@ -72,15 +75,21 @@ class Game(object):
             else:
                 print("Person here.")
 
+    '''display(self) is a method that calls all the individual items that need to be displayed for the
+    user.'''
     def display(self):
         self.displayGrid()
         self.currentHome()
         self.displayOptions()
 
+    '''displayOptions(self) displays the different options a user has.'''
     def displayOptions(self):
         print("\nThese are you options. Attacking ends your turn.")
         print("\nattack|move|inventory|health|monstersLeft|quit")
 
+    '''displayGrid(self) prints the entire neighborhood that a user is in.
+    If a house is empty it prints an E. If a house has a monster or person
+    in it, it prints an O. If the user is at that home it prints a P.'''
     def displayGrid(self):
         print("\n---------------Neighborhood----------------")
         size = self.neighborhood.getGridLength()
@@ -95,6 +104,8 @@ class Game(object):
                     pos = "{pos} O".format(pos = pos)
             print("\n{pos}".format(pos = pos))
 
+    '''move(self) is the method that allows the user to traverse the
+    neighborhood.'''
     def move(self):
         nextPos = input("\nWhat direction would you like to go in?"
             +"\nN for North\nS for South\nE for East\nW for West\n").upper()
@@ -111,6 +122,10 @@ class Game(object):
             print("Not a valid move.")
 
 
+    '''isValidMove(self, nextPos) is used to decide if a move is valid. It is called
+    by move when checking to see if the next position is on the grid. 
+    - Returns True if the move is allowed.
+    - Returns False if it is not.'''
     def isValidMove(self, nextPos):
         validMove = True
         if (nextPos == 'N') and (self.player.getPosY() == 0):
@@ -123,6 +138,11 @@ class Game(object):
             validMove = False
         return validMove
 
+    '''isGameOver(self) is used to decide if the game is over. It checks
+    the player's health, and then checks the total number of monsters in
+    the neighborhood.
+    - Returns True if the game is over.
+    - Returns False if it is not.'''
     def isGameOver(self):
         gameOver = False
         currHealth = self.player.getHealth()
@@ -134,10 +154,15 @@ class Game(object):
             print("\nYou have killed all the Monster and have saved your friends!")
         return gameOver
 
+    '''getInventory(self) is the method that calls the player class to print the
+    player's Inventory.'''
     def getInventory(self): 
         print("\n---------------------- Inventory ------------------------")
         self.player.printInventory()
 
+    '''getWeapon(self) prints the inventory and then asks the user for what weapon they
+    want to use. If it is not a valid answer it asks again recurively.
+    - Returns the Inventory slot number of the weapon.'''
     def getWeapon(self):
         self.getInventory()
         selected = 0
@@ -151,6 +176,9 @@ class Game(object):
             selected = self.getWeapon()
         return selected
 
+    '''playerAttack(self) is the method that allows the user to attack all the weapons in a house.
+    It finds the total attack value, and then checks each monster to see if it can attack that
+    monster, and if it the attack has a special bonus.'''
     def playerAttack(self):
         selected = self.getWeapon()
         tempWeapon = self.player.getInventory()[selected]
@@ -185,19 +213,22 @@ class Game(object):
 
 
 
-
+    '''playerHealth(self) prints the player's health'''
     def playerHealth(self):
         print("\nPlayer Health: {}".format(self.player.getHealth()))
 
+    '''totalMonsterCount(self): prints the total monsters in the neighborhood.'''
     def totalMonsterCount(self):
         print("\nTotal Monsters Remaining: {}".format(self.neighborhood.getMonstersInHouses()))
 
+    '''addWeapon(self) is the method called to add a weapon to the player's inventory.'''
     def addWeapon(self):
         if len(self.player.getInventory()) < 10:
             tempList = ['SourStraws', 'NerdBomb', 'ChocolateBars', 'HersheyKisses']
             weapon = randint(0,3)
             self.player.appendInventory(tempList[weapon])
 
+    '''monstersAttack(self) the method that allows the monsters to attack the player.'''
     def monstersAttack(self):
         tmpAttValue = 0
         for i in self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()].getMonsters():

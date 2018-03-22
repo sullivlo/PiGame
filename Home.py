@@ -16,6 +16,11 @@ class Home(Observable, Observer):
         Observer.__init__(self)
         self.monsters = self.popHome()
 
+    '''popHome(self) this method populates the homes with random
+    a random amount of NPCs. As well the NPCs themselves are 
+    randomly chosen. All the NPCs are stored in a list and 
+    are returned.
+    - Returned list of monsters.'''
     def popHome(self):
         monsterList = []
         homePop = randint(0,10)
@@ -45,9 +50,13 @@ class Home(Observable, Observer):
                 monsterList.append(ghouls)
         return monsterList
 
+    '''getMonsters(self) return the home's list of monsters.'''
     def getMonsters(self):
         return self.monsters
 
+    '''getMonster(self) method that finds all the non-person
+    NPCs and adds them together.
+    - Returned total number of monsters in the neighborhood.'''
     def numMonster(self):
         total = 0
         for numMonster in self.monsters:
@@ -55,16 +64,22 @@ class Home(Observable, Observer):
                 total = total + 1
         return total
 
+    '''newPerson(self, position) method that adds a person at
+    the position inputed with the function call.'''
     def newPerson(self, position):
         person = Person.Person()
         person.add_observer(self)
         self.monsters.insert(position, person)
 
+    '''deleteMonster(self, position) function that delets the
+    monster at the position inputed. Then greats a new person
+    at the same position. Then updates the observer.'''
     def deleteMonster(self, position):
         del self.monsters[position]
         self.newPerson(position)
         self.update()
 
+    '''update(self) updates the observer.'''
     def update(self):
         self.updateObserver()
 
