@@ -28,7 +28,7 @@ class Weapon(object):
         self.modif = modif
 
     def decreaseUses(self):
-        if uses != 0:
+        if self.uses != 0:
             self.uses = self.uses - 1
 
     def genModif(self):

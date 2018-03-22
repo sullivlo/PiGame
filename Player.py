@@ -16,8 +16,7 @@ class Player(object):
         #Changed control flow beucase tempList created readablibity issues
 	def popWeapons(self):
 		hersheykisses = HersheyKisses.HersheyKisses()
-		print(hersheykisses.getName())
-		weaponList = [HersheyKisses]
+		weaponList = [hersheykisses]
 		tempList = ['SourStraws', 'Nerdbomb', 'ChocolateBars']
 		for size in range(0,9):
 			randWeapon = randint(0,2)
@@ -46,17 +45,33 @@ class Player(object):
 	def genHealth(self):
 		return randint(100, 125)
 
+	def printInventory(self):
+		invSlot = 0
+		for wp in self.weapons:
+			print('Inventory Slot: {num}, Weapon: {name}, Uses: {uses}, Modifier {mod}'
+				.format(num=invSlot, name=wp.getName(), uses=wp.getUses(), mod = wp.getModif()))
+			invSlot = invSlot + 1
+
 	def appendInventory(self, weapon):
 		if weapon == 'SourStraws':
-			weaponList.append(SourStraws.SourStraws())
+			self.weapons.append(SourStraws.SourStraws())
 		elif weapon == 'Nerdbomb':
-			weaponList.append(Nerdbomb.NerdBomb())
+			self.weapons.append(Nerdbomb.NerdBomb())
 		elif weapon == 'ChocolateBars':
-			weaponList.append(ChocolateBars.ChocolateBars())
+			self.weapons.append(ChocolateBars.ChocolateBars())
+
+	def decreaseWeaponUses(self, selected):
+		self.weapons[selected].decreaseUses()
 
 	#Create Player class getters
 	def getHealth(self):
 		return self.health
+
+	def getWeaponName(self, selected):
+		return self.weapons[selected].getName()
+
+	def getWeaponMod(self, selected):
+		return self.weapons[selected].getModif()
 
 	def getAttack(self):
 		return self.attack
