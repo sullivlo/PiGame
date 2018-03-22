@@ -140,11 +140,9 @@ class Game(object):
         currHouse = self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()]
         for monster in currHouse.getMonsters():
             if monster.getName() == 'Zombies':
-                print("Made it Z1")
                 if tempWeapon.getName() in monster.getAltCandy():
                     monster.setHealth(monster.getHealth()-(2*tmpAttValue))
                 else:
-                    print("Made it Z2")
                     monster.setHealth(monster.getHealth()-tmpAttValue)
             elif monster.getName() == 'Vampires':
                 if tempWeapon.getName() not in monster.getUnaffCandy():
