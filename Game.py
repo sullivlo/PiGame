@@ -55,7 +55,7 @@ class Game(object):
                     return
                 else:
                     print("Not a vaild action.")
-            self.gameover = self.isGameOver()
+                self.gameover = self.isGameOver()
             if(self.gameover == False):
                 print("\n---------------Monster's Turn----------------")
                 self.monstersAttack()
@@ -78,7 +78,7 @@ class Game(object):
         self.displayOptions()
 
     def displayOptions(self):
-        print("These are you options. Attacking ends your turn.")
+        print("\nThese are you options. Attacking ends your turn.")
         print("\nattack|move|inventory|health|monstersLeft|quit")
 
     def displayGrid(self):
@@ -179,7 +179,6 @@ class Game(object):
                 self.addWeapon()
             if monster.getHealth() <= 0:
                 currHouse.deleteMonster(pos)
-                self.neighborhood.update()
             pos = pos +1
         if tempWeapon.getUses() == 0:
             self.player.deleteWeapon(selected)
