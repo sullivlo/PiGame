@@ -1,3 +1,4 @@
+import math
 from random import *
 import Neighborhood
 import Player
@@ -183,7 +184,7 @@ class Game(object):
         selected = self.getWeapon()
         tempWeapon = self.player.getInventory()[selected]
         tempWeapon.decreaseUses()
-        tmpAttValue = self.player.getAttack() * tempWeapon.getModif()
+        tmpAttValue = round((self.player.getAttack() * tempWeapon.getModif()),2)
         pos = 0
         currHouse = self.neighborhood.getHouses()[self.player.getPosX()][self.player.getPosY()]
         for monster in currHouse.getMonsters():
@@ -235,6 +236,7 @@ class Game(object):
             tmpAttValue = tmpAttValue + i.getAttack()
             if i.getName() is 'Person':
                 self.addWeapon()
+        tmpAttValue = round(tmpAttValue, 2)
         self.player.decreaseHealth(tmpAttValue)
         print("\nPlayer Attacked by the monster, yikes! Lost hp: {}".format(tmpAttValue))
     
